@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8051/poseData';
+const API_URL = import.meta.env.BASE_URL;
 
 export const savePoseData = async (poseData) => {
   try {

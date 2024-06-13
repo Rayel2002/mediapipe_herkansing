@@ -11,6 +11,7 @@ Het project Mediapipe is een webapplicatie die gebruik maakt van MediaPipe voor 
 ## 2. Installatie
 
 ### Vereisten
+
 - Node.js
 - npm (Node Package Manager)
 - MongoDB
@@ -19,9 +20,20 @@ Het project Mediapipe is een webapplicatie die gebruik maakt van MediaPipe voor 
 
 ### Installatie Stappen
 1. Clone de repository:
-   ```bash
-   git clone <repository-url>
+   git clone https://github.com/Rayel2002/mediapipe_herkansing
    cd mediapipe_herkansing
+
+   Serverside
+   cd server
+   npm i
+   rename EXAMPLE.env into .env
+   fill example.env in
+
+   Clientside
+   cd frontend
+   npm i
+   rename EXAMPLE.env into .env
+   fill example.env in
 
 ### 3. API Endpoinds
 POST /poseData/save: Sla pose data op in de database.

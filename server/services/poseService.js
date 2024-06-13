@@ -1,8 +1,28 @@
+import { savePoseData as savePoseDataToDb, getPoseData as getPoseDataFromDb } from '../models/poseModel.js';
 import brain from 'brain.js';
 
 let model;
 
-export const trainModel = (poseData) => {
+export const savePoseData = async (poseData) => {
+  try {
+    console.log('Saving pose data:', poseData);
+    await savePoseDataToDb(poseData);
+  } catch (error) {
+    console.error('Error in savePoseData service:', error.message);
+    throw new Error('Error saving pose data: ' + error.message);
+  }
+};
+
+export const getPoseData = async () => {
+  try {
+    return await getPoseDataFromDb();
+  } catch (error) {
+    console.error('Error in getPoseData service:', error.message);
+    throw new Error('Error getting pose data: ' + error.message);
+  }
+};
+
+export const trainModel = async (poseData) => {
   const net = new brain.NeuralNetwork();
 
   const trainingData = poseData.map(data => ({
@@ -21,7 +41,7 @@ export const trainModel = (poseData) => {
   return model;
 };
 
-export const predictPose = (pose) => {
+export const predictPose = async (pose) => {
   if (!model) {
     throw new Error('Model has not been trained.');
   }
@@ -29,7 +49,7 @@ export const predictPose = (pose) => {
   return Object.keys(result).reduce((a, b) => result[a] > result[b] ? a : b);
 };
 
-export const calculateAccuracy = (poseData) => {
+export const calculateAccuracy = async (poseData) => {
   if (!model) {
     throw new Error('Model has not been trained.');
   }
@@ -45,7 +65,7 @@ export const calculateAccuracy = (poseData) => {
   return correctPredictions / poseData.length;
 };
 
-export const getConfusionMatrix = (poseData) => {
+export const getConfusionMatrix = async (poseData) => {
   if (!model) {
     throw new Error('Model has not been trained.');
   }

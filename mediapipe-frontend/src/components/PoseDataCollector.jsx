@@ -9,26 +9,47 @@ import {
 
 const PoseDataCollector = ({ poseData }) => {
   const handleSave = async () => {
-    await savePoseData(poseData);
+    try {
+      await savePoseData(poseData);
+    } catch (error) {
+      console.error('There was an error saving the pose data!', error);
+    }
   };
 
   const handleTrain = async () => {
-    await trainModel();
+    try {
+      const response = await trainModel();
+      console.log(response.message);
+    } catch (error) {
+      console.error('There was an error training the model!', error);
+    }
   };
 
   const handlePredict = async () => {
-    const prediction = await predictPose(poseData[poseData.length - 1].inputs); // assuming the last pose is the one to predict
-    console.log("Prediction:", prediction);
+    try {
+      const prediction = await predictPose(poseData[poseData.length - 1].inputs);
+      console.log('Prediction:', prediction);
+    } catch (error) {
+      console.error('There was an error predicting the pose!', error);
+    }
   };
 
   const handleCalculateAccuracy = async () => {
-    const accuracy = await calculateAccuracy();
-    console.log("Accuracy:", accuracy);
+    try {
+      const accuracy = await calculateAccuracy();
+      console.log('Accuracy:', accuracy);
+    } catch (error) {
+      console.error('There was an error calculating accuracy!', error);
+    }
   };
 
   const handleGetConfusionMatrix = async () => {
-    const matrix = await getConfusionMatrix();
-    console.log("Confusion Matrix:", matrix);
+    try {
+      const matrix = await getConfusionMatrix();
+      console.log('Confusion Matrix:', matrix);
+    } catch (error) {
+      console.error('There was an error getting the confusion matrix!', error);
+    }
   };
 
   return (

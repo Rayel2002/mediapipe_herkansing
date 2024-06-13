@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8050/poseData'; // Correcte URL voor je API endpoint
+const API_URL = 'http://localhost:8051/poseData';
 
 export const savePoseData = async (poseData) => {
   try {
@@ -31,4 +31,3 @@ export const getPoseData = async () => {
     throw error;
   }
 };
-

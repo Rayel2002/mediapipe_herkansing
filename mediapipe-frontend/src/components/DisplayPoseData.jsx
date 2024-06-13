@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getPoseData } from '../utils/poseDataAPI.js';
+import { getPoseData } from '../utils/poseDataAPI'; // Zorg ervoor dat het pad klopt
 
 const DisplayPoseData = () => {
   const [poseData, setPoseData] = useState([]);

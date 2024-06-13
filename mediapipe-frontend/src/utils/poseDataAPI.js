@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.BASE_URL;
+const API_URL =  import.meta.env.VITE_BASE_URL;
 
 export const savePoseData = async (poseData) => {
   try {
@@ -17,7 +17,6 @@ export const savePoseData = async (poseData) => {
     throw error;
   }
 };
-
 export const getPoseData = async () => {
   try {
     const response = await fetch(API_URL);
